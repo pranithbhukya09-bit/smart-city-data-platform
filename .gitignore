@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Spark
+.sparkStaging/
+
+# Logs
+*.log
+
+# Power BI
+*.pbix
+
+# Azure
+.azure/
+
+# Temporary files
+tmp/
