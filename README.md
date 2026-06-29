@@ -101,8 +101,61 @@ README.md
 
 ---
 
-## 🚀 How to Run
+## 🚀 How to Run This Project Locally
 
-### 1. Install dependencies
+### 📌 Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.9+
+- pip
+- Java (JDK 8 or 11 recommended for PySpark)
+- PySpark installed (`pyspark==3.5.1` recommended)
+
+---
+
+### ⚙️ 1. Clone the Repository
+
 ```bash
+git clone git@github.com:pranithbhukya09-bit/smart-city-data-platform.git
+cd smart-city-data-platform
+
+📦 2. Create Virtual Environment (Recommended)
+python3 -m venv venv
+source venv/bin/activate
+📥 3. Install Dependencies
 pip install -r requirements.txt
+🗂️ 4. Verify Dataset Exists
+
+Make sure your raw dataset is placed here:
+
+datasets/raw/taxi_trips.csv
+
+If not, add your CSV file there before running.
+
+🚀 5. Run Full Pipeline
+
+Run the complete Medallion ETL pipeline:
+
+python3 -m src.pipeline.run_pipeline
+📊 6. Expected Output
+
+After successful execution, you will see:
+
+Bronze layer processed (raw ingestion)
+Silver layer cleaned data
+Gold layer aggregated analytics
+
+Output files will be generated in:
+
+datasets/processed/
+  ├── bronze/
+  ├── silver/
+  └── gold/
+🧪 7. (Optional) Run Individual Layers
+Bronze Layer
+python3 src/bronze/bronze_ingestion.py
+Silver Layer
+python3 src/silver/silver_cleaning.py
+Gold Layer
+python3 src/gold/gold_aggregations.py
