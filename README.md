@@ -1,35 +1,108 @@
-# Smart City Lakehouse: Scalable IoT Data Engineering Platform
+# 🚀 Smart City Data Platform (Medallion Architecture with PySpark)
 
-## Overview
+A scalable end-to-end **data engineering pipeline** built using **PySpark, medallion architecture, and modular ETL design principles**.  
+The project processes raw urban mobility (Chicago Taxi-like) data into analytics-ready datasets.
 
-This project demonstrates an end-to-end cloud-native data engineering pipeline for processing Smart City IoT sensor data using Azure Databricks, Azure Data Factory, PySpark, and Delta Lake.
+---
 
-## Tech Stack
+## 📌 Project Overview
 
-- Azure Databricks
-- Azure Data Factory
-- Azure Data Lake Storage Gen2
-- PySpark
+This project simulates a real-world smart city data system using a layered architecture:
+
+- Bronze Layer → Raw data ingestion
+- Silver Layer → Data cleaning & transformation
+- Gold Layer → Aggregated analytics
+
+Designed for scalability and cloud migration (Azure Databricks / AWS EMR).
+
+---
+
+## 🏗️ Architecture
+
+Raw Data (CSV)
+      ↓
+Bronze Layer (PySpark Ingestion)
+      ↓
+Silver Layer (Data Cleaning)
+      ↓
+Gold Layer (Aggregations)
+      ↓
+Parquet Outputs for Analytics
+
+---
+
+## ⚙️ Tech Stack
+
+### Core Data Engineering
+- PySpark 3.5+
 - Spark SQL
-- Delta Lake
-- Azure SQL Database
-- Power BI
-- Python
-- Git
+- Distributed Data Processing
 
-## Architecture
+### Programming
+- Python 3
+- SQL
 
-Raw Data
-→ Bronze Layer
-→ Silver Layer
-→ Gold Layer
-→ Azure SQL Database
-→ Power BI
+### Data Formats
+- CSV
+- Parquet
 
-## Features
+### Architecture Concepts
+- Medallion Architecture (Bronze / Silver / Gold)
+- Modular ETL Design
+- Scalable Data Pipelines
 
-- Distributed ETL with PySpark
-- Medallion Architecture
-- Incremental Processing
-- Data Quality Validation
-- AI-ready Analytics
+### DevOps
+- Git & GitHub
+- CI/CD (GitHub Actions)
+
+---
+
+## 📊 Features
+
+- End-to-end ETL pipeline (Bronze → Gold)
+- Modular PySpark architecture
+- Data cleaning & type casting
+- Scalable distributed processing design
+- Analytics outputs:
+  - Revenue by location
+  - Peak hour analysis
+  - Payment distribution trends
+
+---
+
+## 📁 Project Structure
+
+smart-city-data-platform/
+
+datasets/
+  raw/
+  processed/
+    bronze/
+    silver/
+    gold/
+
+src/
+  bronze/
+  silver/
+  gold/
+  config/
+  pipeline/
+  utils/
+
+adf/
+dashboard/
+notebooks/
+sql/
+tests/
+
+run_pipeline.py
+requirements.txt
+README.md
+
+---
+
+## 🚀 How to Run
+
+### 1. Install dependencies
+```bash
+pip install -r requirements.txt
