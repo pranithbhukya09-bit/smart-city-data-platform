@@ -10,9 +10,12 @@ st.title("🚕 Smart City Data Platform Dashboard")
 spark = SparkSession.builder.appName("Dashboard").getOrCreate()
 
 # Load data
-df = spark.read.parquet(
-    "../datasets/processed/gold/revenue_by_location"
-)
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+gold_path = BASE_DIR / "datasets" / "processed" / "gold" / "revenue_by_location"
+
+df = spark.read.parquet(str(gold_path))
 
 # KEEP ONLY REQUIRED COLUMNS
 df = df.select("pickup_location", "total_revenue")
