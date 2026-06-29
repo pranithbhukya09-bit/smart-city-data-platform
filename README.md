@@ -1,161 +1,209 @@
-# 🚀 Smart City Data Platform (Medallion Architecture with PySpark)
+# 🚕 Smart City Data Platform
 
-A scalable end-to-end **data engineering pipeline** built using **PySpark, medallion architecture, and modular ETL design principles**.  
-The project processes raw urban mobility (Chicago Taxi-like) data into analytics-ready datasets.
+A modern **Data Engineering project** that processes taxi trip data using **PySpark** and visualizes business insights through an interactive **Streamlit dashboard**.
+
+The project demonstrates a complete **Bronze → Silver → Gold** data pipeline, following the Medallion Architecture used in production data platforms.
 
 ---
 
 ## 📌 Project Overview
 
-This project simulates a real-world smart city data system using a layered architecture:
+The Smart City Data Platform ingests raw taxi trip data, transforms it into clean and aggregated datasets, and presents key business metrics such as:
 
-- Bronze Layer → Raw data ingestion
-- Silver Layer → Data cleaning & transformation
-- Gold Layer → Aggregated analytics
-
-Designed for scalability and cloud migration (Azure Databricks / AWS EMR).
+- Revenue by pickup location
+- Total trips by location
+- Average trip distance
+- Interactive dashboard with KPIs and charts
 
 ---
 
 ## 🏗️ Architecture
 
-Raw Data (CSV)
-      ↓
-Bronze Layer (PySpark Ingestion)
-      ↓
-Silver Layer (Data Cleaning)
-      ↓
-Gold Layer (Aggregations)
-      ↓
-Parquet Outputs for Analytics
+```
+                Raw Taxi Data (CSV/Parquet)
+                         │
+                         ▼
+                  Bronze Layer
+               (Raw Ingested Data)
+                         │
+                         ▼
+                  Silver Layer
+          (Cleaned & Transformed Data)
+                         │
+                         ▼
+                   Gold Layer
+      (Business Aggregated Metrics)
+                         │
+                         ▼
+              Streamlit Dashboard
+```
 
 ---
 
-## ⚙️ Tech Stack
+## 📂 Project Structure
 
-### Core Data Engineering
-- PySpark 3.5+
-- Spark SQL
-- Distributed Data Processing
-
-### Programming
-- Python 3
-- SQL
-
-### Data Formats
-- CSV
-- Parquet
-
-### Architecture Concepts
-- Medallion Architecture (Bronze / Silver / Gold)
-- Modular ETL Design
-- Scalable Data Pipelines
-
-### DevOps
-- Git & GitHub
-- CI/CD (GitHub Actions)
-
----
-
-## 📊 Features
-
-- End-to-end ETL pipeline (Bronze → Gold)
-- Modular PySpark architecture
-- Data cleaning & type casting
-- Scalable distributed processing design
-- Analytics outputs:
-  - Revenue by location
-  - Peak hour analysis
-  - Payment distribution trends
-
----
-
-## 📁 Project Structure
-
+```
 smart-city-data-platform/
-
-datasets/
-  raw/
-  processed/
-    bronze/
-    silver/
-    gold/
-
-src/
-  bronze/
-  silver/
-  gold/
-  config/
-  pipeline/
-  utils/
-
-adf/
-dashboard/
-notebooks/
-sql/
-tests/
-
-run_pipeline.py
-requirements.txt
-README.md
+│
+├── dashboard/
+│   └── app.py
+│
+├── datasets/
+│   ├── raw/
+│   └── processed/
+│       ├── bronze/
+│       ├── silver/
+│       └── gold/
+│
+├── jobs/
+│   ├── bronze_job.py
+│   ├── silver_job.py
+│   └── gold_job.py
+│
+├── requirements.txt
+└── README.md
+```
 
 ---
 
-## 🚀 How to Run This Project Locally
+## 🛠️ Tech Stack
 
-### 📌 Prerequisites
-
-Make sure you have the following installed:
-
-- Python 3.9+
-- pip
-- Java (JDK 8 or 11 recommended for PySpark)
-- PySpark installed (`pyspark==3.5.1` recommended)
+- Python
+- PySpark
+- Streamlit
+- Pandas
+- Apache Spark
+- Parquet
+- Git
 
 ---
 
-### ⚙️ 1. Clone the Repository
+## 📊 Dashboard Features
+
+### KPIs
+- Total Records
+- Top Revenue Location
+- Maximum Revenue
+
+### Visualizations
+- Revenue by Pickup Location
+- Revenue Data Table
+- Interactive Bar Chart
+
+---
+
+## 📁 Data Pipeline
+
+### Bronze Layer
+- Reads raw taxi trip dataset
+- Stores raw data in Parquet format
+
+### Silver Layer
+- Cleans missing values
+- Removes invalid records
+- Standardizes data types
+
+### Gold Layer
+Generates business-ready datasets:
+
+- Revenue by Pickup Location
+- Total Trips by Pickup Location
+- Average Trip Distance
+
+---
+
+## ▶️ Running the Project
+
+### 1. Clone Repository
 
 ```bash
-git clone git@github.com:pranithbhukya09-bit/smart-city-data-platform.git
+git clone <your-repository-url>
 cd smart-city-data-platform
+```
 
-📦 2. Create Virtual Environment (Recommended)
-python3 -m venv venv
-source venv/bin/activate
-📥 3. Install Dependencies
+---
+
+### 2. Install Dependencies
+
+```bash
 pip install -r requirements.txt
-🗂️ 4. Verify Dataset Exists
+```
 
-Make sure your raw dataset is placed here:
+---
 
-datasets/raw/taxi_trips.csv
+### 3. Run Data Pipeline
 
-If not, add your CSV file there before running.
+Bronze
 
-🚀 5. Run Full Pipeline
+```bash
+python jobs/bronze_job.py
+```
 
-Run the complete Medallion ETL pipeline:
+Silver
 
-python3 -m src.pipeline.run_pipeline
-📊 6. Expected Output
+```bash
+python jobs/silver_job.py
+```
 
-After successful execution, you will see:
+Gold
 
-Bronze layer processed (raw ingestion)
-Silver layer cleaned data
-Gold layer aggregated analytics
+```bash
+python jobs/gold_job.py
+```
 
-Output files will be generated in:
+---
 
-datasets/processed/
-  ├── bronze/
-  ├── silver/
-  └── gold/
-🧪 7. (Optional) Run Individual Layers
-Bronze Layer
-python3 src/bronze/bronze_ingestion.py
-Silver Layer
-python3 src/silver/silver_cleaning.py
-Gold Layer
-python3 src/gold/gold_aggregations.py
+### 4. Launch Dashboard
+
+```bash
+cd dashboard
+streamlit run app.py
+```
+
+---
+
+## 📈 Example Gold Dataset
+
+| Pickup Location | Total Revenue | Total Trips | Average Distance |
+|-----------------|--------------:|------------:|-----------------:|
+| Downtown | 128450.50 | 4210 | 4.8 |
+| Airport | 98560.20 | 3120 | 8.5 |
+| Midtown | 76420.75 | 2740 | 5.2 |
+
+---
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+
+- Large-scale data processing with PySpark
+- ETL pipeline development
+- Medallion Architecture (Bronze, Silver, Gold)
+- Data aggregation and analytics
+- Interactive dashboard development
+- Data engineering best practices
+
+---
+
+## 🚀 Future Enhancements
+
+- Real-time streaming with Kafka
+- Spark Structured Streaming
+- Airflow pipeline orchestration
+- Docker containerization
+- AWS S3 data lake integration
+- Delta Lake support
+- Interactive map visualizations
+- Time-series analytics
+- Automated data quality checks
+
+---
+
+## 📸 Dashboard Preview
+
+Dashboard includes:
+
+- 📊 KPI cards
+- 📈 Revenue distribution chart
+- 📋 Revenue data table
+- Business insights by pickup location
